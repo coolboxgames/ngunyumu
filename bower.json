@@ -16,7 +16,9 @@
     "iron-selector": "polymerelements/iron-selector#^1.0.0",
     "paper-icon-button": "PolymerElements/paper-icon-button#~1.1.1",
     "polymer": "polymer/polymer#^1.4.0",
-    "firebase-element": "GoogleWebComponents/firebase-element#~1.0.15"
+    "firebase-element": "GoogleWebComponents/firebase-element#~1.0.15",
+    "polymerfire": "firebase/polymerfire#~0.9.4",
+    "app-storage": "PolymerElements/app-storage#~0.9.4"
   },
   "devDependencies": {
     "web-component-tester": "^4.0.0"

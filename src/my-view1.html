@@ -43,30 +43,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin: 16px 0;
         color: #212121;
       }
+
     </style>
 
-    <div class="card">
+    <!-- <div class="card">
       <div class="circle">1</div>
       <h1>View One</h1>
       <p>Ut labores minimum atomorum pro. Laudem tibique ut has.
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
-    </div>
-    <paper-card heading="Card Title">
-      <div class="card-content">Some content</div>
-      <div class="card-actions">
-        <paper-button>Some action</paper-button>
+        <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
       </div>
-    </paper-card>
+      <paper-card heading="Card Title">
+        <div class="card-content">Some content</div>
+        <div class="card-actions">
+          <paper-button>Some action</paper-button>
+        </div>
+      </paper-card> -->
+    <firebase-query id="query" app-name="anga" path="/Nyeri/moisture/[[moisture.uid]]" data="{{moistures}}"></firebase-query>
+    <app-indexeddb-mirror session="[[user.uid]]" key="moistures" data="{{moistures}}" persisted-data="{{persistedMoistures}}"></app-indexeddb-mirror>
+    <div class="card">
+      <template is="dom-repeat" items="[[persistedMoistures]]" as="moistures">
+        <na-note id$="[[moisture.$key]]" title="[[moisture.value]]" body="[[moisture.data]]" on-tap="edit"></na-note>
+      </template>
+    </div>
   </template>
 
   <script>
 
     Polymer({
+      is: 'my-view1',
+      signIn: function() {
+        this.$.auth.signInWithPopup();
+      },
 
-      is: 'my-view1'
+      get notesPath() {
+        return '/Nyeri/moisture/' + this.moisture.uid;
+      },
 
+      toEditableId: function(moistureId) {
+        return this.moisturePath + '/' + moistureId;
+      }
     });
-
   </script>
-
 </dom-module>

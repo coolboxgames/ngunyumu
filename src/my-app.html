@@ -21,7 +21,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/firebase-element/firebase.html">
-
+<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
+<link rel="import" href="../bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
 
 <link rel="import" href="my-icons.html">
 
@@ -63,15 +64,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding-left: 32px;
       }
 
-
     </style>
 
     <app-location route="{{route}}"></app-location>
-    <app-route
-        route="{{route}}"
-        pattern="/:page"
-        data="{{routeData}}"
-        tail="{{subroute}}"></app-route>
+    <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
 
     <app-drawer-layout fullbleed>
 
@@ -120,12 +116,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           reflectToAttribute: true,
           observer: '_pageChanged'
         },
-
+        uid: String,
+        data: {
+          type: Object,
+          observer: 'dataChanged'
+        }
       },
 
-      observers: [
-        '_routePageChanged(routeData.page)'
-      ],
+      observers: ['_routePageChanged(routeData.page)'],
 
       _routePageChanged: function(page) {
         this.page = page || 'view1';
@@ -133,12 +131,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _pageChanged: function(page) {
         // load page import on demand.
-        this.importHref(
-          this.resolveUrl('my-' + page + '.html'), null, null, true);
+        this.importHref(this.resolveUrl('my-' + page + '.html'), null, null, true);
       }
 
     });
-
   </script>
-
 </dom-module>
