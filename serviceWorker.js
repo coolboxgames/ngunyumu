@@ -14,7 +14,8 @@ var files = [
   "/js/main.js",
   "js/newapp.js",
   "/js/jquery-2.1.4.js",
-  "/images/icons/G-Logo-128.png"
+  "/images/icons/icon-32.png"
+  "/images/icons/icon-128.png"
 ];
 
 //Adding install event listener
@@ -127,7 +128,7 @@ self.addEventListener("push", function(event) {
   var title = "Push notification demo";
   var body = "You have received a notification";
   var tag = "demo";
-  var icon = "/images/icons/G-Logo-152.png";
+  var icon = "/images/icons/icon-128.png";
 
   event.waitUntil(
     self.registration.showNotification(title, {

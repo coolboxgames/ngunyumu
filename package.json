@@ -1,8 +1,8 @@
 {
-  "name": "demo",
-  "description": "Demo - progress web application",
+  "name": "ngunyumu",
+  "description": "A rather awesome way to view weather around dedan kimathi university",
   "version": "1.0.0",
-  "author": "gokulkrishh",
+  "author": "denzelwamburu",
   "dependencies": {
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
