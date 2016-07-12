@@ -12,6 +12,7 @@ var files = [
   "/css/styles.css",
   "/js/app.js",
   "/js/main.js",
+  "js/newapp.js",
   "/js/jquery-2.1.4.js",
   "/images/icons/G-Logo-128.png"
 ];
