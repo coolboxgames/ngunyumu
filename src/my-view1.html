@@ -58,8 +58,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-button>Some action</paper-button>
         </div>
       </paper-card> -->
-    <firebase-query id="query" app-name="anga" path="/Nyeri/moisture/[[moisture.uid]]" data="{{moistures}}"></firebase-query>
-    <app-indexeddb-mirror session="[[user.uid]]" key="moistures" data="{{moistures}}" persisted-data="{{persistedMoistures}}"></app-indexeddb-mirror>
+      <!-- <firebase-app name="anga" api-key="AIzaSyAA_C3RvEX7Kuu_74P_1m8F2Lz1y6mS4w8" auth-domain="anga-2529d.firebaseapp.com" database-url="https://anga-2529d.firebaseio.com"></firebase-app> -->
+      <firebase-document
+          id="document"
+          app-name="anga"
+          path="[[editableMoistureId]]"
+          data="{{editableMoisture}}">
+      </firebase-document>
+    <firebase-query id="query" app-name="anga" path="/moistures/[[moisture.uid]]" data="{{moistures}}"></firebase-query>
+    <app-indexeddb-mirror session="[[moisture.uid]]" key="moistures" data="{{moistures}}" persisted-data="{{persistedMoistures}}"></app-indexeddb-mirror>
     <div class="card">
       <template is="dom-repeat" items="[[persistedMoistures]]" as="moistures">
         <na-note id$="[[moisture.$key]]" title="[[moisture.value]]" body="[[moisture.data]]" on-tap="edit"></na-note>
@@ -76,7 +83,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       get notesPath() {
-        return '/Nyeri/moisture/' + this.moisture.uid;
+        return '/moistures/' + this.moisture.uid;
       },
 
       toEditableId: function(moistureId) {

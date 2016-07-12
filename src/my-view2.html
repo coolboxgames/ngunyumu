@@ -53,7 +53,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>
 
   </template>
-
+  <firebase-collection
+    order-by-child="height"
+    limit-to-first="3"
+    location="https://dinosaur-facts.firebaseio.com/dinosaurs"
+    data="{{dinosaurs}}"></firebase-collection>
+  <template is="dom-repeat" items="[[dinosaurs]]" as="dinosaur">
+    <h4>[[dinosaur.__firebaseKey__]]</h4>
+    Height: <span>[[dinosaur.height]]</span>m
+  </template>
   <script>
 
     Polymer({
