@@ -1,0 +1,27 @@
+{
+  "name": "ngunyumu",
+  "description": "An awesome way to view weather around dekut",
+  "main": "server.js",
+  "authors": [
+    "denzelwamburu"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "ngunyumu",
+    "dekut"
+  ],
+  "homepage": "https://github.com/denzelwamburu/ngunyumu",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#~1.5.7",
+    "angularfire": "~2.0.1"
+  }
+}
