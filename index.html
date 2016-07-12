@@ -14,6 +14,8 @@
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,700">
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+
   </head>
   <body ng-controller="MainCtrl">
 
@@ -27,7 +29,7 @@
 
     <div class="header-section">
       <div class="header-container">
-        <h2>View Weather Around Kimathi University</h2>
+        <h3>An Amazing Way To View Weather Around Kimathi University</h3>
         <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
         <p class="custom-button">Enable Push Notifications:
           <input id="turn-on-notification" type="checkbox" hidden="hidden" class="custom-input" data-checked="">
@@ -45,13 +47,13 @@
           </a>
         </li>
         <li>
-          <a target="_blank" href="https://github.com/gokulkrishh">Author</a>
+          <a target="_blank" href="https://github.com/gokulkrishh">Weather</a>
         </li>
         <li>
-          <a target="_blank" href="https://gokulkrishh.github.io">Blog</a>
+          <a target="_blank" href="https://gokulkrishh.github.io">Reports</a>
         </li>
         <li>
-          <a target="_blank" href="https://github.com/gokulkrishh/simple-progressive-web-app">Source</a>
+          <a target="_blank" href="https://github.com/gokulkrishh/simple-progressive-web-app">Prediction</a>
         </li>
         <li class="info">
           <span>SW Registration:
@@ -79,17 +81,26 @@
 
     <button class="btn-notification hide" id="send-push">Send Push Notification</button>
 
-    <div id="main" ng-repeat="moisture in moistures">
+    <div ng-repeat="moisture in moistures">
       <!-- <p class="loading">Loading...</p> -->
+      <p>{{moisture.average}}</p>
     </div>
 
     <!-- JS Files  -->
-    <script src="bower_components/angular/angular.js"></script>
+    <!-- <script src="bower_components/angular/angular.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+
     <!-- <script src="bower_components/angularfire/dist/angularfire.js"></script>
   <script src="bower_components/firebase/firebase.js"></script> -->
     <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+    <!-- <script scr="bower_components/angular-material/angular-material.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.7/angular-material.min.js"></script>
 
+    <!-- <script scr="bower_components/angular-animate/angular-animate.js"></script>
+    <script scr="bower_components/angular-aria/angular-aria.js"></script> -->
     <script src="js/jquery-2.1.4.js"></script>
     <script src="js/main.js"></script>
     <script src="js/app.js"></script>

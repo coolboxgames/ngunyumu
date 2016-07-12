@@ -1,4 +1,4 @@
-var app = angular.module("ngunyumu", ["firebase"]);
+var app = angular.module("ngunyumu", ['firebase', 'ngMaterial']);
 app.factory('MoisturesService', function($firebaseArray, $firebaseObject) {
 
   var ref = new Firebase('https://nelionfarm.firebaseio.com');
