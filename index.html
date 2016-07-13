@@ -89,13 +89,16 @@
       <md-content>
         <md-tabs md-dynamic-height md-border-bottom>
           <md-tab label="Temperature">
-              <!-- <h1 class="md-display-2">Temperature</h1> -->
-              <!-- <p>Temperature Tab</p> -->
-              <div flex-xs flex-gt-xs="50" layout="column">
+            <!-- <h1 class="md-display-2">Temperature</h1> -->
+            <!-- <p>Temperature Tab</p> -->
+            <p>Temperature As of
+              {{today.time | amCalendar:referenceTime:formats}}
+            </p>
+            <div flex-xs flex-gt-xs="50" layout="column">
 
-                <md-content class="md-padding" layout-xs="column" layout="row">
-                  <md-card  md-theme-watch ng-repeat="moisture in moistures" class="cardy">
-                    <!-- <md-card-title>
+              <md-content class="md-padding" layout-xs="column" layout="row">
+                <md-card md-theme-watch ng-repeat="moisture in moistures" class="cardy">
+                  <!-- <md-card-title>
                     <md-card-title-text>
                       <span class="md-headline">{{moisture.average}}
                         º</span>
@@ -104,29 +107,63 @@
                     </md-card-title-text>
 
                   </md-card-title> -->
+                  <md-card-content>
+                    <span class="md-title">
+                      {{moisture.average}}
+                      º
+                    </span>
+
+                  </md-card-content>
+                  <md-card-actions layout="row" layout-align="end center" class="md-padding">
+                    <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
+                    <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
+                    At
+                    <span class="md-subhead">{{moisture.timestamp | amCalendar:referenceTime:formats}}</span>
+
+                  </md-card-actions>
+                </md-card>
+              </md-content>
+            </div>
+          </md-tab>
+          <md-tab label="Humidity">
+            <md-content class="md-padding">
+              <!-- <h1 class="md-display-2">Humidity</h1> -->
+              <p>Humidity As of
+                {{today.time | amCalendar:referenceTime:formats}}
+              </p>
+              <!-- <user-card name="User name" theme="forest"></user-card> -->
+              <div flex-xs flex-gt-xs="50" layout="column">
+
+                <md-content class="md-padding" layout-xs="column" layout="row">
+                  <md-card md-theme-watch ng-repeat="humidity in humidities" class="cardy">
+                    <!-- <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">{{moisture.average}}
+                    º</span>
+
+
+                </md-card-title-text>
+
+              </md-card-title> -->
                     <md-card-content>
-                  <span class="md-title">    {{moisture.average}}
-                      º </span>
+                      <span class="md-title">
+                        {{humidity.average}}
+                        %
+                      </span>
 
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center" class="md-padding">
                       <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
                       <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
-                    At  <span class="md-subhead">{{moisture.timestamp | amCalendar:referenceTime:formats}}</span>
+                      At
+                      <span class="md-subhead">{{humidity.timestamp | amCalendar:referenceTime:formats}}</span>
 
                     </md-card-actions>
                   </md-card>
                 </md-content>
               </div>
+            </md-content>
           </md-tab>
-          <md-tab label="Humidity">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Humidity</h1>
-          <p>Humidity Tab</p>
-          <!-- <user-card name="User name" theme="forest"></user-card> -->
-
-        </md-content>
-      </md-tab>
         </md-content>
       </div>
 

@@ -41,4 +41,7 @@ app.controller("MainCtrl", function($scope, MoisturesService, HumiditiesService)
   // GET humidities
   $scope.humidities = HumiditiesService.getHumidities();
   console.log($scope.humidities);
+  $scope.today = {
+   time: new Date()
+};
 });
