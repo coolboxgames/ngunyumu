@@ -40,5 +40,5 @@ app.controller("MainCtrl", function($scope, MoisturesService, HumiditiesService)
 
   // GET humidities
   $scope.humidities = HumiditiesService.getHumidities();
-  console.log('The Humidities Data is :' + $scope.humidities);
+  console.log($scope.humidities);
 });

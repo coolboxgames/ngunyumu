@@ -47,13 +47,13 @@
           </a>
         </li>
         <li>
-          <a target="_blank" href="https://github.com/gokulkrishh">Weather</a>
+          <a target="_blank" href="">Weather</a>
         </li>
         <li>
-          <a target="_blank" href="https://gokulkrishh.github.io">Reports</a>
+          <a target="_blank" href="">Reports</a>
         </li>
         <li>
-          <a target="_blank" href="https://github.com/gokulkrishh/simple-progressive-web-app">Prediction</a>
+          <a target="_blank" href="">Prediction</a>
         </li>
         <li class="info">
           <span>SW Registration:
@@ -84,11 +84,22 @@
     <!-- <div ng-repeat="moisture in moistures">
       <p>{{moisture.average}}</p>
     </div> -->
-    <div flex-xs flex-gt-xs="50" layout="column">
+    <div ng-cloak>
+      <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+          <md-tab label="one">
+            <md-content class="md-padding">
+              <h1 class="md-display-2">Temperature</h1>
+              <p>Temperature Tab</p>
+            </md-content>
+          </md-tab>
 
-      <md-content class="md-padding" layout-xs="column" layout="row">
-        <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch ng-repeat="moisture in moistures">
-          <!-- <md-card-title>
+        </div>
+        <div flex-xs flex-gt-xs="50" layout="column">
+
+          <md-content class="md-padding" layout-xs="column" layout="row">
+            <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch ng-repeat="moisture in moistures">
+              <!-- <md-card-title>
             <md-card-title-text>
               <span class="md-headline">{{moisture.average}}
                 º</span>
@@ -97,41 +108,40 @@
             </md-card-title-text>
 
           </md-card-title> -->
-          <md-card-content>
-            {{moisture.average}}
-            º
+              <md-card-content>
+                {{moisture.average}}
+                º
 
-          </md-card-content>
-          <md-card-actions layout="row" layout-align="end center" class="md-padding">
-            <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
-              <md-icon md-svg-icon="images/icons/time.svg">
-              </md-icon>
-              <span class="md-subhead">{{moisture.timestamp | amCalendar:referenceTime:formats}}</span>
+              </md-card-content>
+              <md-card-actions layout="row" layout-align="end center" class="md-padding">
+                <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
+                <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
+                <span class="md-subhead">{{moisture.timestamp | amCalendar:referenceTime:formats}}</span>
 
-          </md-card-actions>
-        </md-card>
-      </md-content>
-    </div>
-    <!-- JS Files  -->
-    <!-- <script src="bower_components/angular/angular.js"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+              </md-card-actions>
+            </md-card>
+          </md-content>
+        </div>
+        <!-- JS Files  -->
+        <!-- <script src="bower_components/angular/angular.js"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 
-    <!-- <script src="bower_components/angularfire/dist/angularfire.js"></script>
+        <!-- <script src="bower_components/angularfire/dist/angularfire.js"></script>
   <script src="bower_components/firebase/firebase.js"></script> -->
-    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
-    <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
-    <!-- <script scr="bower_components/angular-material/angular-material.js"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.7/angular-material.min.js"></script>
-    <script src="bower_components/moment/moment.js"></script>
-    <script src="bower_components/angular-moment/angular-moment.js"></script>
-    <!-- <script scr="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+        <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+        <!-- <script scr="bower_components/angular-material/angular-material.js"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.7/angular-material.min.js"></script>
+        <script src="bower_components/moment/moment.js"></script>
+        <script src="bower_components/angular-moment/angular-moment.js"></script>
+        <!-- <script scr="bower_components/angular-animate/angular-animate.js"></script>
     <script scr="bower_components/angular-aria/angular-aria.js"></script> -->
-    <script src="js/jquery-2.1.4.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/newapp.js"></script>
+        <script src="js/jquery-2.1.4.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/newapp.js"></script>
 
-  </body>
-</html>
+      </body>
+    </html>
