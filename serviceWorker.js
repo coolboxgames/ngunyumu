@@ -14,7 +14,7 @@ var files = [
   "/js/main.js",
   "js/newapp.js",
   "/js/jquery-2.1.4.js",
-  "/images/icons/icon-32.png"
+  "/images/icons/icon-32.png",
   "/images/icons/icon-128.png"
 ];
 
