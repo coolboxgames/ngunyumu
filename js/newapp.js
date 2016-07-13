@@ -25,7 +25,7 @@ app.factory('HumiditiesService', function($firebaseArray, $firebaseObject) {
     }
   }
 })
-app.controller("MainCtrl", function($scope, MoisturesService HumiditiesService) {
+app.controller("MainCtrl", function($scope, MoisturesService, HumiditiesService) {
   // var ref = new Firebase("https://nelionfarm.firebaseio.com");
 
   // download the data into a local object
@@ -36,7 +36,7 @@ app.controller("MainCtrl", function($scope, MoisturesService HumiditiesService) 
   // console.log("File is on");
   // putting a console.log here won't work, see below
   $scope.moistures = MoisturesService.getMoistures();
-  console.log('Moistures Data is :' + $scope.moistures);
+  console.log($scope.moistures);
 
   // GET humidities
   $scope.humidities = HumiditiesService.getHumidities();
