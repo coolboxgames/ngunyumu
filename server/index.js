@@ -26,7 +26,7 @@ var dht_sensor = {
     });
     **/
     firebase
-      .push('humidity', {
+      .push('humidities', {
         average: readout.humidity.toFixed(2)
       })
       .then(function(body) {
@@ -36,7 +36,7 @@ var dht_sensor = {
         console.log(err);
       });
       firebase
-      .push('temperature', {
+      .push('temperatures', {
        average:  readout.temperature.toFixed(2),
        timestamp: new Date()
       })
@@ -49,15 +49,9 @@ var dht_sensor = {
 
              setTimeout(function () {
                   dht_sensor.read();
-              }, 2000);
+              }, 60000);
           }
       };
-
-    setTimeout(function() {
-      dht_sensor.read();
-    }, 2000);
-  }
-};
 
 if (dht_sensor.initialize()) {
   dht_sensor.read();
