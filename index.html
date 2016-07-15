@@ -97,7 +97,7 @@
             <div flex-xs flex-gt-xs="50" layout="column">
 
               <md-content class="md-padding" layout-xs="column" layout="row">
-                <md-card md-theme-watch ng-repeat="temperature in temperatures" class="cardy">
+                <md-card md-theme-watch ng-repeat="temperature in temperatures.slice().reverse()" class="cardy">
                   <!-- <md-card-title>
                     <md-card-title-text>
                       <span class="md-headline">{{moisture.average}}
@@ -135,7 +135,7 @@
               <div flex-xs flex-gt-xs="50" layout="column">
 
                 <md-content class="md-padding" layout-xs="column" layout="row">
-                  <md-card md-theme-watch ng-repeat="humidity in humidities" class="cardy">
+                  <md-card md-theme-watch ng-repeat="humidity in humidities.slice().reverse()" class="cardy">
                     <!-- <md-card-title>
                 <md-card-title-text>
                   <span class="md-headline">{{moisture.average}}
