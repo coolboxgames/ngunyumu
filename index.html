@@ -97,7 +97,7 @@
             <div flex-xs flex-gt-xs="50" layout="column">
 
               <md-content class="md-padding" layout-xs="column" layout="row">
-                <md-card md-theme-watch ng-repeat="moisture in moistures" class="cardy">
+                <md-card md-theme-watch ng-repeat="temperature in temperatures" class="cardy">
                   <!-- <md-card-title>
                     <md-card-title-text>
                       <span class="md-headline">{{moisture.average}}
@@ -109,7 +109,7 @@
                   </md-card-title> -->
                   <md-card-content>
                     <span class="md-title">
-                      {{moisture.average}}
+                      {{temperature.average}}
                       º
                     </span>
 
@@ -118,7 +118,7 @@
                     <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
                     <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
                     At
-                    <span class="md-subhead">{{moisture.timestamp | amCalendar:referenceTime:formats}}</span>
+                    <span class="md-subhead">{{temperature.timestamp | amCalendar:referenceTime:formats}}</span>
 
                   </md-card-actions>
                 </md-card>

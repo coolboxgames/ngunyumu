@@ -1,20 +1,20 @@
 var app = angular.module("ngunyumu", ['firebase', 'ngMaterial', 'angularMoment']);
-app.factory('MoisturesService', function($firebaseArray, $firebaseObject) {
+app.factory('TemperaturesService', function($firebaseArray, $firebaseObject) {
 
-  var ref = new Firebase('https://nelionfarm.firebaseio.com');
+  var ref = new Firebase('https://ngunyumu.firebaseio.com');
 
   return {
-    getMoistures: function() {
-      return $firebaseArray(ref.child('moistures'));
+    getTemperatures: function() {
+      return $firebaseArray(ref.child('temperatures'));
     },
-    getMoisture: function(moistureId) {
-      return $firebaseObject(ref.child('moistures').child(moistureId));
+    getTemperature: function(temperatureId) {
+      return $firebaseObject(ref.child('temperatures').child(temperatureId));
     }
   }
 })
 app.factory('HumiditiesService', function($firebaseArray, $firebaseObject) {
 
-  var ref = new Firebase('https://nelionfarm.firebaseio.com');
+  var ref = new Firebase('https://ngunyumu.firebaseio.com');
 
   return {
     getHumidities: function() {
@@ -25,7 +25,7 @@ app.factory('HumiditiesService', function($firebaseArray, $firebaseObject) {
     }
   }
 })
-app.controller("MainCtrl", function($scope, MoisturesService, HumiditiesService) {
+app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesService) {
   // var ref = new Firebase("https://nelionfarm.firebaseio.com");
 
   // download the data into a local object
@@ -35,8 +35,8 @@ app.controller("MainCtrl", function($scope, MoisturesService, HumiditiesService)
   // console.log($scope.moistures);
   // console.log("File is on");
   // putting a console.log here won't work, see below
-  $scope.moistures = MoisturesService.getMoistures();
-  console.log($scope.moistures);
+  $scope.temperatures = TemperaturesService.getTemperatures();
+  console.log($scope.temperatures);
 
   // GET humidities
   $scope.humidities = HumiditiesService.getHumidities();
