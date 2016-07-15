@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html ng-app="ngunyumu">
+  <head>
+    <meta charset="utf-8">
+    <title>Ngunyumu</title>
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=description content="This web application will work in offline, has a splash screen add to home screen etc,.">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#009900">
+    <meta name="msapplication-TileColor" content="#009900">
+    <meta name="msapplication-TileImage" content="/images/icons/icon-128.png">
+    <link rel=icon sizes="192x192" href="/images/icons/icon-128.png">
+    <link rel="apple-touch-icon" href="/images/icons/icon-128.png">
+    <link rel="manifest" href="manifest.json">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,700"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+  </head>
+  <body ng-controller="MainCtrl">
+
+    <header class="header">
+      <svg class="menu-icon" width="24px" height="24px" viewBox="0 0 48 48">
+        <path d="M6 36h36v-4H6v4zm0-10h36v-4H6v4zm0-14v4h36v-4H6z"></path>
+      </svg>
+
+      <span>Ngunyumu</span>
+    </header>
+
+    <div class="header-section">
+      <div class="header-container">
+        <h2>Weather From Ngunyumu Weather Station</h2>
+        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
+        <p class="custom-button">Enable Push Notifications:
+          <input id="turn-on-notification" type="checkbox" hidden="hidden" class="custom-input" data-checked="">
+          <label for="turn-on-notification" class="custom-checkbox"></label>
+        </p>
+      </div>
+    </div>
+
+    <section id="menu">
+      <ul>
+        <li>
+          <a href="/" class="homepage">
+            <img class="logo" src="/images/icons/icon-128.png" alt="Logo">
+            <span>Ngunyumu</span>
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="">Weather</a>
+        </li>
+        <li>
+          <a target="_blank" href="">Reports</a>
+        </li>
+        <li>
+          <a target="_blank" href="">Prediction</a>
+        </li>
+        <li class="info">
+          <span>SW Registration:
+            <b>
+              <span id="sw-register-state">✕</span>
+            </b>
+          </span>
+        </li>
+        <li class="info info-offline">
+          <span>Offline:
+            <b>
+              <span id="sw-offline-state">✕</span>
+            </b>
+          </span>
+        </li>
+        <!-- <li>
+        <iframe src="https://ghbtns.com/github-btn.html?user=gokulkrishh&repo=simple-progressive-web-app&type=star&count=true&size=large" frameborder="0" scrolling="0" width="130px" height="30px"></iframe>
+        <iframe src="https://ghbtns.com/github-btn.html?user=gokulkrishh&repo=simple-progressive-web-app&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="130px" height="30px"></iframe>
+      </li> -->
+
+      </ul>
+    </section>
+
+    <section id="menu-overlay"></section>
+
+    <button class="btn-notification hide" id="send-push">Send Push Notification</button>
+
+    <!-- <div ng-repeat="moisture in moistures">
+      <p>{{moisture.average}}</p>
+    </div> -->
+    <div ng-cloak>
+      <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+          <md-tab label="Temperature">
+            <!-- <h1 class="md-display-2">Temperature</h1> -->
+            <!-- <p>Temperature Tab</p> -->
+            <p>Temperature As of
+              {{today.time | amCalendar:referenceTime:formats}}
+            </p>
+            <div flex-xs flex-gt-xs="50" layout="column">
+
+              <md-content class="md-padding" layout-xs="column" layout="row">
+                <md-card md-theme-watch ng-repeat="moisture in moistures" class="cardy">
+                  <!-- <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">{{moisture.average}}
+                        º</span>
+
+
+                    </md-card-title-text>
+
+                  </md-card-title> -->
+                  <md-card-content>
+                    <span class="md-title">
+                      {{moisture.average}}
+                      º
+                    </span>
+
+                  </md-card-content>
+                  <md-card-actions layout="row" layout-align="end center" class="md-padding">
+                    <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
+                    <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
+                    At
+                    <span class="md-subhead">{{moisture.timestamp | amCalendar:referenceTime:formats}}</span>
+
+                  </md-card-actions>
+                </md-card>
+              </md-content>
+            </div>
+          </md-tab>
+          <md-tab label="Humidity">
+            <md-content class="md-padding">
+              <!-- <h1 class="md-display-2">Humidity</h1> -->
+              <p>Humidity As of
+                {{today.time | amCalendar:referenceTime:formats}}
+              </p>
+              <!-- <user-card name="User name" theme="forest"></user-card> -->
+              <div flex-xs flex-gt-xs="50" layout="column">
+
+                <md-content class="md-padding" layout-xs="column" layout="row">
+                  <md-card md-theme-watch ng-repeat="humidity in humidities" class="cardy">
+                    <!-- <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">{{moisture.average}}
+                    º</span>
+
+
+                </md-card-title-text>
+
+              </md-card-title> -->
+                    <md-card-content>
+                      <span class="md-title">
+                        {{humidity.average}}
+                        %
+                      </span>
+
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="end center" class="md-padding">
+                      <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
+                      <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
+                      At
+                      <span class="md-subhead">{{humidity.timestamp | amCalendar:referenceTime:formats}}</span>
+
+                    </md-card-actions>
+                  </md-card>
+                </md-content>
+              </div>
+            </md-content>
+          </md-tab>
+        </md-content>
+      </div>
+
+      <!-- JS Files  -->
+      <!-- <script src="bower_components/angular/angular.js"></script> -->
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+
+      <!-- <script src="bower_components/angularfire/dist/angularfire.js"></script>
+  <script src="bower_components/firebase/firebase.js"></script> -->
+      <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+      <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+      <!-- <script scr="bower_components/angular-material/angular-material.js"></script> -->
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.7/angular-material.min.js"></script>
+      <script src="bower_components/moment/moment.js"></script>
+      <script src="bower_components/angular-moment/angular-moment.js"></script>
+      <!-- <script scr="bower_components/angular-animate/angular-animate.js"></script>
+    <script scr="bower_components/angular-aria/angular-aria.js"></script> -->
+      <script src="js/jquery-2.1.4.js"></script>
+      <script src="js/main.js"></script>
+      <script src="js/app.js"></script>
+      <script src="js/newapp.js"></script>
+
+    </body>
+  </html>
