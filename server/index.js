@@ -35,6 +35,23 @@ var dht_sensor = {
       .fail(function(err) {
         console.log(err);
       });
+      firebase
+      .push('temperature', {
+       average:  readout.temperature.toFixed(2),
+       timestamp: new Date()
+      })
+      .then(function(body){
+        console.log(body); // returns name ref, e.g. { name: "-JR-fhuV6T3vkTNSVrBs" }, of the child resource
+      })
+      .fail(function(err){
+        console.log(err);
+      });
+
+             setTimeout(function () {
+                  dht_sensor.read();
+              }, 2000);
+          }
+      };
 
     setTimeout(function() {
       dht_sensor.read();
