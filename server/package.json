@@ -1,0 +1,17 @@
+{
+  "name": "ngunyumu",
+  "version": "0.0.1",
+  "description": "A weather Station For Dekut",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "./deps.sh",
+    "start": "node index.js"
+  },
+  "author": "Denzel Wamburu <denzjoseph@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "firebase-client": "0.1.0",
+    "moment": "2.9.0",
+    "node-dht-sensor": "0.0.6"
+  }
+}
