@@ -56,6 +56,8 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
   //average for humidities
   var humiditiestotal = 0;
   var humidities = $scope.humidities;
+  console.log(humidities[0]);
+
   for (var i = 0; i < humidities.length; i++) {
     humiditiestotal += humidities[i];
   }
