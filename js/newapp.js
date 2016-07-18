@@ -42,6 +42,13 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
   $scope.humidities = HumiditiesService.getHumidities();
   console.log($scope.humidities);
   $scope.today = {
-   time: new Date()
-};
+    time: new Date()
+  };
+  //average for temperature
+  var temperaturetotal = 0;
+  for (var i = 0; i < temperatures.length; i++) {
+    temperaturetotal += temperatures[i];
+  }
+  var avg = temperaturetotal / temperatures.length
+console.log(avg);
 });

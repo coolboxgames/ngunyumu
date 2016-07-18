@@ -31,13 +31,7 @@
     <div class="header-section">
       <div class="header-container">
         <h2>Ngunyumu Weather Station</h2>
-        <md-content class="md-padding">
-          Elavation :
-          <span class="md-subhead">0.3956º</span>
-          <span class="md-subhead">36.9622º</span>
-          <span class="md-subhead">2600 M</span>
-
-        </md-content>
+    
 
         <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
         <p class="custom-button">Enable Push Notifications:
@@ -74,9 +68,9 @@
           <md-tab label="Temperature">
             <!-- <h1 class="md-display-2">Temperature</h1> -->
             <!-- <p>Temperature Tab</p> -->
-            <p>Temperature As of
+            <!-- <p>Temperature As of
               {{today.time | amCalendar:referenceTime:formats}}
-            </p>
+            </p> -->
             <div flex-xs flex-gt-xs="50" layout="column">
 
               <md-content class="md-padding" layout-xs="column" layout="row">
@@ -95,7 +89,10 @@
                       {{temperature.average}}
                       º
                     </span>
-
+                    <span class="md-title">
+                      {{humidity.average}}
+                      º
+                    </span>
                   </md-card-content>
                   <md-card-actions layout="row" layout-align="end center" class="md-padding">
                     <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
@@ -147,6 +144,7 @@
               </div>
             </md-content>
           </md-tab>
+        </md-tabs>
         </md-content>
       </div>
 
