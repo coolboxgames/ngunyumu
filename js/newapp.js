@@ -45,10 +45,22 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
     time: new Date()
   };
   //average for temperature
-  var temperaturetotal = 0;
+  var temperaturestotal = 0;
+  var temperatures = $scope.temperatures;
   for (var i = 0; i < temperatures.length; i++) {
-    temperaturetotal += temperatures[i];
+    temperaturestotal += temperatures[i];
   }
-  var avg = temperaturetotal / temperatures.length
-console.log(avg);
+  var temperaturesavg = temperaturestotal / temperatures.length;
+  console.log(temperaturesavg);
+
+
+
+
+  var humiditiestotal = 0;
+  var humidities = $scope.humidities;
+  for (var i = 0; i < humidities.length; i++) {
+    humiditiestotal += humidities[i];
+  }
+  var humiditiesavg = humiditiestotal / humidities.length;
+  console.log(humiditiesavg);
 });
