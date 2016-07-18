@@ -4,7 +4,9 @@ var gcm = require('node-gcm');
 var app = express();
 
 //Here we are configuring express to use body-parser as middle-ware.
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(bodyParser.json());
 
 //To server static assests in root dir
@@ -18,12 +20,16 @@ app.use(function(req, res, next) {
 });
 
 //To server index.html page
-app.get("/", function (req, res) {
+app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
+//To server reports.html page
+app.get("/reports", function(req, res) {
+  res.sendFile(__dirname + "/reports.html");
+});
 //To receive push request from client
-app.post("/send_notification", function (req, res) {
+app.post("/send_notification", function(req, res) {
   if (!req.body) {
     res.status(400);
   }
@@ -35,13 +41,14 @@ app.post("/send_notification", function (req, res) {
   var sender = new gcm.Sender('AIzaSyCjrU5SqotSg2ybDLK_7rMMt9Rv0dMusvY'); //API Key
 
   // Now the sender can be used to send messages
-  sender.send(message, { registrationTokens: regTokens }, function (error, response) {
-  	if (error) {
+  sender.send(message, {
+    registrationTokens: regTokens
+  }, function(error, response) {
+    if (error) {
       console.error(error);
       res.status(400);
-    }
-  	else {
-     	console.log(response);
+    } else {
+      console.log(response);
       res.status(200);
     }
   });
