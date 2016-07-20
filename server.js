@@ -22,6 +22,10 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
+//To server reports.html page
+app.get("/reports", function (req, res) {
+  res.sendFile(__dirname + "/reports.html");
+});
 //To receive push request from client
 app.post("/send_notification", function (req, res) {
   if (!req.body) {

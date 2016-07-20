@@ -125,9 +125,9 @@ self.addEventListener("activate", function (event) {
 self.addEventListener("push", function(event) {
   console.log("Event: Push", event);
 
-  var title = "Push notification demo";
-  var body = "You have received a notification";
-  var tag = "demo";
+  var title = "Ngunyumu Weather Station";
+  var body = "Kindly Check the reports for Today, they are available in the reports menu";
+  var tag = "reports";
   var icon = "/images/icons/icon-128.png";
 
   event.waitUntil(

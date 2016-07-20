@@ -1,4 +1,4 @@
-var app = angular.module("ngunyumu", ['firebase', 'ngMaterial', 'angularMoment']);
+var app = angular.module("ngunyumu", ['firebase', 'ngMaterial', 'angularMoment', 'nvd3', 'nvd3ChartDirectives']);
 app.factory('TemperaturesService', function($firebaseArray, $firebaseObject) {
 
   var ref = new Firebase('https://ngunyumu.firebaseio.com');
@@ -36,12 +36,47 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
   // console.log("File is on");
   // putting a console.log here won't work, see below
   $scope.temperatures = TemperaturesService.getTemperatures();
-  console.log($scope.temperatures);
+  // console.log($scope.temperatures);
+  //average for temperature
+  var temperaturestotal = 0;
+  var temperatures = TemperaturesService.getTemperatures();
+  console.log(temperatures.length);
+  for (var i = 0; i < temperatures.length; i++) {
+    temperaturestotal += temperatures[i];
+  }
+  var temperaturesavg = temperaturestotal / temperatures.length;
+  console.log(temperaturesavg);
 
   // GET humidities
   $scope.humidities = HumiditiesService.getHumidities();
   console.log($scope.humidities);
+  console.log($scope.humidities.length);
   $scope.today = {
-   time: new Date()
-};
+    time: new Date()
+  };
+
+  //average for humidities
+  var humiditiestotal = 0;
+  var humidities = $scope.humidities;
+  console.log(humidities[0]);
+
+  for (var i = 0; i < humidities.length; i++) {
+    humiditiestotal += humidities[i];
+  }
+  var humiditiesavg = humiditiestotal / humidities.length;
+  console.log(humiditiesavg);
+  $scope.average = {
+    humidities: humiditiesavg,
+    temperatures: temperaturesavg
+  };
+  $scope.reports = [{
+    "key": "Temperatures",
+    "values": [
+      [8, 19],
+      [9, 14],
+      [10, 20],
+      [11, 19],
+      [12, 21]
+    ]
+  }];
 });
