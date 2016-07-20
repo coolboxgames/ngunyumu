@@ -1,4 +1,4 @@
-var app = angular.module("ngunyumu", ['firebase', 'ngMaterial', 'angularMoment']);
+var app = angular.module("ngunyumu", ['firebase', 'ngMaterial', 'angularMoment', 'nvd3', 'nvd3ChartDirectives']);
 app.factory('TemperaturesService', function($firebaseArray, $firebaseObject) {
 
   var ref = new Firebase('https://ngunyumu.firebaseio.com');
@@ -50,6 +50,7 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
   // GET humidities
   $scope.humidities = HumiditiesService.getHumidities();
   console.log($scope.humidities);
+  console.log($scope.humidities.length);
   $scope.today = {
     time: new Date()
   };
@@ -68,4 +69,14 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
     humidities: humiditiesavg,
     temperatures: temperaturesavg
   };
+  $scope.reports = [{
+    "key": "Temperatures",
+    "values": [
+      [8, 19],
+      [9, 14],
+      [10, 20],
+      [11, 19],
+      [12, 21]
+    ]
+  }];
 });

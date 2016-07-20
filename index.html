@@ -36,7 +36,7 @@
           <span class="md-subhead">0.3956º S</span>
           <span class="md-subhead">36.9622º E</span>
           <br/>
-          <span class="md-subhead">2600 M</span>
+          <span class="md-subhead">2600 M Above See Level</span>
 
         </md-content>
         <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
@@ -71,85 +71,48 @@
     </div> -->
     <div ng-cloak>
       <md-content>
-        <md-tabs md-dynamic-height md-border-bottom>
-          <md-tab label="Temperature">
-            <!-- <h1 class="md-display-2">Temperature</h1> -->
-            <!-- <p>Temperature Tab</p> -->
-            <!-- <p>Temperature As of
-              {{today.time | amCalendar:referenceTime:formats}}
-            </p> -->
-            <div flex-xs flex-gt-xs="50" layout="column">
-              <div ng-if="temperatures.length == 0">
-                <md-content class="md-padding" layout-xs="column" layout="row">
-                  <span class="md-subhead">Loading Please Wait...</span>
+        <div flex-xs flex-gt-xs="50" layout="column">
+          <div ng-if="temperatures.length == 0">
+            <md-content class="md-padding" layout-xs="column" layout="row">
+              <span class="md-subhead">Loading Please Wait...</span>
 
-                </md-content>
-              </div>
-              <md-content class="md-padding" layout-xs="column" layout="row">
-                <md-card md-theme-watch ng-repeat="temperature in temperatures.slice().reverse()|limitTo:1" class="cardy">
-                  <!-- <md-card-title>
-                    <md-card-title-text>
-                      <span class="md-headline">{{moisture.average}}
-                        º</span>
-
-
-                    </md-card-title-text>
-
-                  </md-card-title> -->
-                  <md-card-content>
-                    <span class="md-title">
-                      <i class="md-subhead">Current Temperature:</i>
-                      {{temperature.average}}
-                      º
-                    </span>
-                    <br/>
-
-                    <span class="md-title" ng-repeat="humidity in humidities.slice().reverse()|limitTo:1">
-                      <i class="md-subhead">Current Humidity:</i>
-                      {{humidity.average}}
-                      %
-                    </span>
-                  </md-card-content>
-                  <md-card-actions layout="row" layout-align="end center" class="md-padding">
-                    <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
-                    <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
-                    At
-                    <span class="md-subhead">{{temperature.timestamp | amCalendar:referenceTime:formats}}</span>
-
-                  </md-card-actions>
-                </md-card>
-              </md-content>
-            </div>
-          </md-tab>
-          <!-- <md-tab label="Humidity">
-            <md-content class="md-padding">
-              <p>Humidity As of
-                {{today.time | amCalendar:referenceTime:formats}}
-              </p>
-              <div flex-xs flex-gt-xs="50" layout="column">
-
-                <md-content class="md-padding" layout-xs="column" layout="row">
-                  <md-card md-theme-watch ng-repeat="humidity in humidities.slice().reverse()" class="cardy">
-
-                    <md-card-content>
-                      <span class="md-title">
-                        {{humidity.average}}
-                        %
-                      </span>
-
-                    </md-card-content>
-                    <md-card-actions layout="row" layout-align="end center" class="md-padding">
-                      <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
-                      At
-                      <span class="md-subhead">{{humidity.timestamp | amCalendar:referenceTime:formats}}</span>
-
-                    </md-card-actions>
-                  </md-card>
-                </md-content>
-              </div>
             </md-content>
-          </md-tab> -->
-        </md-tabs>
+          </div>
+          <md-content class="md-padding" layout-xs="column" layout="row">
+            <md-card md-theme-watch ng-repeat="temperature in temperatures.slice().reverse()|limitTo:1" class="cardy">
+              <!-- <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">{{moisture.average}}
+                    º</span>
+
+
+                </md-card-title-text>
+
+              </md-card-title> -->
+              <md-card-content>
+                <span class="md-title">
+                  <i class="md-subhead">Current Temperature:</i>
+                  {{temperature.average}}
+                  º
+                </span>
+                <br/>
+
+                <span class="md-title" ng-repeat="humidity in humidities.slice().reverse()|limitTo:1">
+                  <i class="md-subhead">Current Humidity:</i>
+                  {{humidity.average}}
+                  %
+                </span>
+              </md-card-content>
+              <md-card-actions layout="row" layout-align="end center" class="md-padding">
+                <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
+                <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
+                At
+                <span class="md-subhead">{{temperature.timestamp | amCalendar:referenceTime:formats}}</span>
+
+              </md-card-actions>
+            </md-card>
+          </md-content>
+        </div>
       </md-content>
     </div>
 
@@ -165,12 +128,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.7/angular-material.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.min.js"></script> -->
-    <script src="bower_components/Chart.js/Chart.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.min.js"></script> -->
-    <script src="bower_components/angular-chart.js/angular-chart.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/nvd3/build/nv.d3.js"></script>
+    <!-- or use another assembly -->
+    <script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
     <!-- <script scr="bower_components/angular-animate/angular-animate.js"></script>
     <script scr="bower_components/angular-aria/angular-aria.js"></script> -->
     <script src="js/jquery-2.1.4.js"></script>
