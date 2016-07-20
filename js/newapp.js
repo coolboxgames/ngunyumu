@@ -36,7 +36,16 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
   // console.log("File is on");
   // putting a console.log here won't work, see below
   $scope.temperatures = TemperaturesService.getTemperatures();
-  console.log($scope.temperatures);
+  // console.log($scope.temperatures);
+  //average for temperature
+  var temperaturestotal = 0;
+  var temperatures = TemperaturesService.getTemperatures();
+  console.log(temperatures.length);
+  for (var i = 0; i < temperatures.length; i++) {
+    temperaturestotal += temperatures[i];
+  }
+  var temperaturesavg = temperaturestotal / temperatures.length;
+  console.log(temperaturesavg);
 
   // GET humidities
   $scope.humidities = HumiditiesService.getHumidities();
@@ -44,14 +53,6 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
   $scope.today = {
     time: new Date()
   };
-  //average for temperature
-  var temperaturestotal = 0;
-  var temperatures = $scope.temperatures;
-  for (var i = 0; i < temperatures.length; i++) {
-    temperaturestotal += temperatures[i];
-  }
-  var temperaturesavg = temperaturestotal / temperatures.length;
-  console.log(temperaturesavg);
 
   //average for humidities
   var humiditiestotal = 0;
