@@ -37,13 +37,7 @@
           <input id="turn-on-notification" type="checkbox" hidden="hidden" class="custom-input" data-checked="">
           <label for="turn-on-notification" class="custom-checkbox"></label>
         </p>
-        <md-content class="md-padding" layout-xs="column" layout="row">
-          Elavation :
-          <span class="md-subhead">0.3956º S</span>
-          <span class="md-subhead">36.9622º E</span>
-          <span class="md-subhead">2600 M</span>
 
-        </md-content>
       </div>
     </div>
 
@@ -56,7 +50,7 @@
           </a>
         </li>
         <li>
-          <a target="_blank" href="/reports">Reports</a>
+          <a target="_self" href="/reports">Reports</a>
         </li>
       </ul>
     </section>
@@ -78,9 +72,14 @@
               {{today.time | amCalendar:referenceTime:formats}}
             </p> -->
             <div flex-xs flex-gt-xs="50" layout="column">
+              <div ng-if="temperatures.length == 0">
+                <md-content class="md-padding" layout-xs="column" layout="row">
+                  <span class="md-subhead">Loading Please Wait...</span>
 
+                </md-content>
+              </div>
               <md-content class="md-padding" layout-xs="column" layout="row">
-                <md-card md-theme-watch ng-repeat="temperature in temperatures.slice().reverse()" class="cardy">
+                <md-card md-theme-watch ng-repeat="temperature in temperatures.slice().reverse()|limitTo:1" class="cardy">
                   <!-- <md-card-title>
                     <md-card-title-text>
                       <span class="md-headline">{{moisture.average}}
@@ -92,10 +91,14 @@
                   </md-card-title> -->
                   <md-card-content>
                     <span class="md-title">
+                      <i class="md-subhead">Current Temperature:</i>
                       {{temperature.average}}
                       º
                     </span>
-                    <span class="md-title">
+                    <br/>
+
+                    <span class="md-title" ng-repeat="humidity in humidities.slice().reverse()|limitTo:1">
+                      <i class="md-subhead">Current Humidity:</i>
                       {{humidity.average}}
                       º
                     </span>
@@ -111,26 +114,16 @@
               </md-content>
             </div>
           </md-tab>
-          <md-tab label="Humidity">
+          <!-- <md-tab label="Humidity">
             <md-content class="md-padding">
-              <!-- <h1 class="md-display-2">Humidity</h1> -->
               <p>Humidity As of
                 {{today.time | amCalendar:referenceTime:formats}}
               </p>
-              <!-- <user-card name="User name" theme="forest"></user-card> -->
               <div flex-xs flex-gt-xs="50" layout="column">
 
                 <md-content class="md-padding" layout-xs="column" layout="row">
                   <md-card md-theme-watch ng-repeat="humidity in humidities.slice().reverse()" class="cardy">
-                    <!-- <md-card-title>
-                <md-card-title-text>
-                  <span class="md-headline">{{moisture.average}}
-                    º</span>
 
-
-                </md-card-title-text>
-
-              </md-card-title> -->
                     <md-card-content>
                       <span class="md-title">
                         {{humidity.average}}
@@ -139,7 +132,6 @@
 
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center" class="md-padding">
-                      <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
                       <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
                       At
                       <span class="md-subhead">{{humidity.timestamp | amCalendar:referenceTime:formats}}</span>
@@ -149,7 +141,7 @@
                 </md-content>
               </div>
             </md-content>
-          </md-tab>
+          </md-tab> -->
         </md-tabs>
       </md-content>
     </div>
