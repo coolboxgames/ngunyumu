@@ -31,7 +31,14 @@
     <div class="header-section">
       <div class="header-container">
         <h2>Ngunyumu Weather Station</h2>
+        <md-content class="md-padding">
+          Elavation :
+          <span class="md-subhead">0.3956º S</span>
+          <span class="md-subhead">36.9622º E</span>
+          <br/>
+          <span class="md-subhead">2600 M</span>
 
+        </md-content>
         <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> -->
         <p class="custom-button">Enable Push Notifications:
           <input id="turn-on-notification" type="checkbox" hidden="hidden" class="custom-input" data-checked="">
@@ -100,7 +107,7 @@
                     <span class="md-title" ng-repeat="humidity in humidities.slice().reverse()|limitTo:1">
                       <i class="md-subhead">Current Humidity:</i>
                       {{humidity.average}}
-                      º
+                      %
                     </span>
                   </md-card-content>
                   <md-card-actions layout="row" layout-align="end center" class="md-padding">
