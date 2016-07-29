@@ -26,57 +26,43 @@ app.factory('HumiditiesService', function($firebaseArray, $firebaseObject) {
   }
 })
 app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesService) {
-  // var ref = new Firebase("https://nelionfarm.firebaseio.com");
 
-  // download the data into a local object
-  // $scope.data = $firebaseObject(ref);
-  // $scope.moistures = $firebaseArray(ref);
-
-  // console.log($scope.moistures);
-  // console.log("File is on");
-  // putting a console.log here won't work, see below
   $scope.temperatures = TemperaturesService.getTemperatures();
-  // console.log($scope.temperatures);
-  //average for temperature
-  var temperaturestotal = 0;
-  var temperatures = TemperaturesService.getTemperatures();
-  console.log(temperatures.length);
-  for (var i = 0; i < temperatures.length; i++) {
-    temperaturestotal += temperatures[i];
-  }
-  var temperaturesavg = temperaturestotal / temperatures.length;
-  console.log(temperaturesavg);
-
+  $scope.temperatures.$loaded().then(function(temperatures) {
+      console.log(temperatures.length);
+      var temperaturestotal = 0;
+      var averagetemperature = 0;
+      for (var i = 0; i < temperatures.length; i++) {
+        // temperaturestotal += temperatures[i].average;
+        temperaturestotal += parseInt(temperatures[i].average, 10)
+          // console.log(temperatures[i].average);
+          // console.log(temperaturestotal);
+      }
+      var averagetemperature = temperaturestotal / temperaturestotal.length;
+      console.log(averagetemperature);
+      $scope.averagetemperature = averagetemperature;
+    });
   // GET humidities
   $scope.humidities = HumiditiesService.getHumidities();
   console.log($scope.humidities);
-  console.log($scope.humidities.length);
   $scope.today = {
     time: new Date()
   };
 
-  //average for humidities
-  var humiditiestotal = 0;
-  var humidities = $scope.humidities;
-  console.log(humidities[0]);
+  $scope.humidities.$loaded().then(function(humidities) {
+      console.log(humidities.length);
+      var humiditiestotal = 0;
+      var averagehumidity = 0;
+      for (var i = 0; i < humidities.length; i++) {
+        // humiditiestotal += humidities[i].average;
+        humiditiestotal += parseInt(humidities[i].average, 10)
+          // console.log(humidities[i].average);
+          // console.log(humiditiestotal);
+      }
+      var averagehumidity = humiditiestotal / humiditiestotal.length;
+      console.log(averagehumidity);
+      $scope.averagehumidity = averagehumidity;
+    });
 
-  for (var i = 0; i < humidities.length; i++) {
-    humiditiestotal += humidities[i];
-  }
-  var humiditiesavg = humiditiestotal / humidities.length;
-  console.log(humiditiesavg);
-  $scope.average = {
-    humidities: humiditiesavg,
-    temperatures: temperaturesavg
-  };
-  $scope.reports = [{
-    "key": "Temperatures",
-    "values": [
-      [8, 19],
-      [9, 14],
-      [10, 20],
-      [11, 19],
-      [12, 21]
-    ]
-  }];
-});
+
+  });
