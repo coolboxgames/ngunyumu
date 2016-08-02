@@ -109,16 +109,17 @@
 
                             </md-card-actions>
                         </md-card>
-                        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                            <md-button href="http://104.198.103.2/reports" title="View Detailed Reports" target="_blank" ng-disabled="true" aria-label="Reports" class="md-raised md-primary">
-                              <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
-                              View Detailed Reports
-                            </md-button>
 
-                        </section>
                     </md-content>
                 </div>
             </md-content>
+            <div layout="row" layout-xs="column" class="md-padding">
+                <md-button href="http://104.198.103.2/reports" title="View Detailed Reports" target="_parent" ng-disabled="false" aria-label="Reports" md-autofocus flex="70" class="md-raised md-primary" layout-xs="column">
+                    <md-icon md-svg-icon="images/icons/trending.svg"></md-icon>
+                    View Detailed Reports
+                </md-button>
+
+            </div>
         </div>
 
         <!-- JS Files  -->
