@@ -66,23 +66,24 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
 
     $scope.humidities.$loaded().then(function(humidities) {
         console.log(humidities.length);
-        var humiditiestotal = 0;
-        var averagehumidity = 0;
-
-        for (var i = 0; i < humidities.length; i++) {
-            // var humiditiesarray = [];
-            var humiditiesarray = new Array(humidities[i].average)
-            var hum = humidities[i].average;
-        }
-
         var n = humidities.length;
-        var sample = [];
+        var arrayplay = [];
         for (var i = 0; i < n; i++)
-            sample.push(humidities[i].average);
-            console.log(sample);
-         $scope.humiditiesmin = sample;
+            arrayplay.push(humidities[i].average);
+        console.log(arrayplay);
+        $scope.humiditiesplay = arrayplay;
     });
 
+    //array push for temperature
+    $scope.temperatures.$loaded().then(function(temperatures) {
+        console.log(temperatures.length);
+        var n = temperatures.length;
+        var arrayplay = [];
+        for (var i = 0; i < n; i++)
+            arrayplay.push(temperatures[i].average);
+        // console.log(arrayplay);
+        $scope.temperaturesplay = arrayplay;
+    });
 
 
 });
