@@ -83,13 +83,25 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         // console.log(arrayplay);
         $scope.temperaturesplay = arrayplay;
 
+        // Create Array For Time
+        var timeplay = [];
+        for (var i = 0; i < n; i++)
+            timeplay.push(temperatures[i].timestampnow.parse());
+        // console.log(arrayplay);
+        $scope.temperaturestime = timeplay;
+        // Time Slicing
+        var timepoop = timeplay.slice(1).slice(-24);
+        var inverttimepoop = timepoop.reverse();
+        console.log(inverttimepoop);
+
         // Do some slicing here
         // var poop = arrayplay.slice(Math.max(arrayplay.length - 5, 1))
-        var poop = arrayplay.slice(1).slice(-24)
+        var poop = arrayplay.slice(1).slice(-24);
         var newpoop = poop.reverse();
 
         console.log(newpoop);
         $scope.labels = ["6 AM", "7 AM", "8 AM", "9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM", "6 PM", "7 PM", "8 PM", "9 PM", "10 PM", "11 PM", "12 AM", "1 AM", "2 AM", "3 AM", "4 AM", "5 AM"];
+        $scope.label = [inverttimepoop];
         $scope.series = ['Temperature'];
         $scope.data = [
             newpoop
