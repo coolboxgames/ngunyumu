@@ -1,4 +1,4 @@
-var app = angular.module("ngunyumu", ['firebase', 'ngMaterial', 'angularMoment', 'nvd3', 'nvd3ChartDirectives']);
+var app = angular.module("ngunyumu", ['firebase', 'ngMaterial', 'angularMoment', 'nvd3', 'nvd3ChartDirectives', 'angular.filter']);
 app.factory('TemperaturesService', function($firebaseArray, $firebaseObject) {
 
     var ref = new Firebase('https://ngunyumu.firebaseio.com');
@@ -63,6 +63,26 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         console.log(averagehumidity);
         $scope.averagehumidity = averagehumidity;
     });
+
+    $scope.humidities.$loaded().then(function(humidities) {
+        console.log(humidities.length);
+        var humiditiestotal = 0;
+        var averagehumidity = 0;
+
+        for (var i = 0; i < humidities.length; i++) {
+            // var humiditiesarray = [];
+            var humiditiesarray = new Array(humidities[i].average)
+            var hum = humidities[i].average;
+        }
+
+        var n = humidities.length;
+        var sample = [];
+        for (var i = 0; i < n; i++)
+            sample.push(humidities[i].average);
+            console.log(sample);
+         $scope.humiditiesmin = sample;
+    });
+
 
 
 });
