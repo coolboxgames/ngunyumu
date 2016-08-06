@@ -59,8 +59,6 @@
 
         <section id="menu-overlay"></section>
 
-
-<!--
     <div ng-cloak>
       <md-content>
         <div flex-xs flex-gt-xs="50" layout="column">
@@ -92,46 +90,61 @@
           </md-content>
         </div>
       </md-content>
-    </div> -->
+    </div> 
 
-    <md-content>
-      <!-- <md-card md-theme-watch ng-repeat="temperature in temperatures"  class="cardy"> -->
-        <md-card>
-        <!-- <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">{{moisture.average}}
-              º</span>
+        <md-content>
+            <md-card md-theme-watch class="cardy">
 
+                <md-card-content>
+                    <span class="md-title">
+                        <i class="md-subhead">Temperature:</i>
+                        {{temperaturesplay | max}}
+                        º
+                    </span>
+                    <br/>
 
-          </md-card-title-text>
+                    <span class="md-title">
+                        <i class="md-subhead">Humidity:</i>
+                        {{humiditiesplay | max}}
+                        %
+                    </span>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center" class="md-padding">
+                    <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
+                    <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
+                    <span class="md-subhead">For The Month Of July</span>
 
-        </md-card-title> -->
-        <md-card-content>
-          <span class="md-title">
-            <!-- {{temperature.average  | max: 'average'}}
-            º -->
-            <!-- <p> {{ [1,2,3,4,7,8,9] | min }}</p> -->
+                </md-card-actions>
+            </md-card>
 
-<p>{{temperatures | min: 'average'}}</p>
-          </span>
-          <br/>
+        </md-content>
 
-          <span class="md-title">
-            <i class="md-subhead">Average Humidity:</i>
-            {{humiditiesmin | max}}
+        <md-content>
+            <md-card md-theme-watch class="cardy">
 
-            %
-          </span>
-        </md-card-content>
-        <md-card-actions layout="row" layout-align="end center" class="md-padding">
-          <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
-          <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
-          <span class="md-subhead">{{temperature.timestamp | amCalendar:referenceTime:formats}}</span>
+                <md-card-content>
+                    <span class="md-title">
+                        <i class="md-subhead">Temperature:</i>
+                        {{temperaturesplay | min}}
+                        º
+                    </span>
+                    <br/>
 
-        </md-card-actions>
-      </md-card>
+                    <span class="md-title">
+                        <i class="md-subhead">Humidity:</i>
+                        {{humiditiesplay | min}}
+                        %
+                    </span>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center" class="md-padding">
+                    <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
+                    <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
+                    <span class="md-subhead">For The Month Of July</span>
 
-    </md-content>
+                </md-card-actions>
+            </md-card>
+
+        </md-content>
         <div>
             <nvd3-line-chart data="reports" showXAxis="true" showYAxis="true" tooltips="true" interactive="true"></div>
 
@@ -151,7 +164,7 @@
             <script src="bower_components/angular-moment/angular-moment.js"></script>
             <!-- <script src="bower_components/d3/d3.js"></script>
     <script src="bower_components/nvd3/build/nv.d3.js"></script> -->
-    <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
+            <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
 
             <script data-require="d3@3.4.6" data-semver="3.4.6" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
             <script data-require="nvd3@1.1.14-beta" data-semver="1.1.14-beta" src="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.14-beta/nv.d3.js"></script>

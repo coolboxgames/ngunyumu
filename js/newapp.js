@@ -81,7 +81,7 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         var arrayplay = [];
         for (var i = 0; i < n; i++)
             arrayplay.push(temperatures[i].average);
-        // console.log(arrayplay);
+        console.log(arrayplay);
         $scope.temperaturesplay = arrayplay;
     });
 
