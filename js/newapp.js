@@ -207,4 +207,10 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         $scope.datad = $scope.times.reverse();
     });
 
+// $scope.previousmonth = moment().subtract(1, 'months');
+var ans = moment().months(); // Number
+$scope.previousmonth = ans - 1;
+
+console.log(ans);
+
 });
