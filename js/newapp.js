@@ -82,11 +82,13 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
             arrayplay.push(temperatures[i].average);
         // console.log(arrayplay);
         $scope.temperaturesplay = arrayplay;
-
+        // var nowed = temperatures[2].timestamp.moment().get('year');;
+        // console.log(nowed);
+        console.log(temperatures[2].timestamp);
         // Create Array For Time
         var timeplay = [];
         for (var i = 0; i < n; i++)
-            timeplay.push(temperatures[i].timestampnow.parse());
+            timeplay.push(temperatures[i].timestamp);
         // console.log(arrayplay);
         $scope.temperaturestime = timeplay;
         // Time Slicing
