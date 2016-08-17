@@ -1,4 +1,4 @@
-var app = angular.module("ngunyumu", ['firebase', 'ngMaterial', 'angularMoment', 'angular.filter', 'chart.js', 'md.data.table']);
+var app = angular.module("ngunyumu", ['firebase', 'ngMaterial', 'angularMoment', 'angular.filter', 'chart.js', 'md.data.table', 'ui.grid']);
 app.factory('TemperaturesService', function($firebaseArray, $firebaseObject) {
 
     var ref = new Firebase('https://ngunyumu.firebaseio.com');
@@ -330,6 +330,15 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         // console.log(reversetimes);
         console.log(_reversetimes);
         $scope.datad = $scope.times.reverse();
+
+        //table data and config
+        $scope.selected = [];
+
+        $scope.query = {
+            order: 'name',
+            limit: 5,
+            page: 1
+        };
     });
 
     // $scope.previousmonth = moment().subtract(1, 'months');
@@ -337,5 +346,7 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
     $scope.previousmonth = ans - 1;
 
     console.log(ans);
+
+
 
 });
