@@ -58,7 +58,6 @@
         </section>
 
         <section id="menu-overlay"></section>
-
         <div ng-cloak>
             <md-content>
                 <md-tabs md-dynamic-height md-border-bottom>
@@ -87,7 +86,14 @@
 
                                 </md-card-actions>
                             </md-card>
-                            <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="datad" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
+
+                            <h3>Temperature Graph:
+                            </h3>
+                            <canvas id="line" class="chart chart-line" chart-data="temperaturedata" chart-labels="datad" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
+                            <br/>
+                            <h3>Humidity Graph:
+                            </h3>
+                            <canvas id="line" class="chart chart-line" chart-data="humiditydata" chart-labels="datad" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
                         </md-content>
                     </md-tab>
                     <md-tab label="maximum">
@@ -112,7 +118,8 @@
                                 <md-card-actions layout="row" layout-align="end center" class="md-padding">
                                     <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
                                     <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
-                                    <span class="md-subhead">For The Month Of July</span>
+                                    <span class="md-subhead">For Month
+                                        {{previousmonth}}</span>
 
                                 </md-card-actions>
                             </md-card>
@@ -140,7 +147,8 @@
                                 <md-card-actions layout="row" layout-align="end center" class="md-padding">
                                     <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
                                     <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
-                                    <span class="md-subhead">For The Month Of July</span>
+                                    <span class="md-subhead">For Month
+                                        {{previousmonth}}</span>
 
                                 </md-card-actions>
                             </md-card>
@@ -148,34 +156,35 @@
                     </md-tab>
                 </md-tabs>
             </md-content>
+        </div>
 
-            <!-- JS Files  -->
-            <!-- <script src="bower_components/angular/angular.js"></script> -->
-            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+        <!-- JS Files  -->
+        <!-- <script src="bower_components/angular/angular.js"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 
-            <!-- <script src="bower_components/angularfire/dist/angularfire.js"></script>
+        <!-- <script src="bower_components/angularfire/dist/angularfire.js"></script>
   <script src="bower_components/firebase/firebase.js"></script> -->
-            <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
-            <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
-            <!-- <script scr="bower_components/angular-material/angular-material.js"></script> -->
-            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.7/angular-material.min.js"></script>
-            <script src="bower_components/moment/moment.js"></script>
-            <script src="bower_components/angular-moment/angular-moment.js"></script>
-            <!-- <script src="bower_components/d3/d3.js"></script>
+        <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+        <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+        <!-- <script scr="bower_components/angular-material/angular-material.js"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.7/angular-material.min.js"></script>
+        <script src="bower_components/moment/moment.js"></script>
+        <script src="bower_components/angular-moment/angular-moment.js"></script>
+        <!-- <script src="bower_components/d3/d3.js"></script>
     <script src="bower_components/nvd3/build/nv.d3.js"></script> -->
-            <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
-            <script src="bower_components/Chart.js/Chart.js"></script>
-            <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
-            <script type="text/javascript" src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+        <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
+        <script src="bower_components/Chart.js/Chart.js"></script>
+        <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
 
-            <!-- <script scr="bower_components/angular-animate/angular-animate.js"></script>
+        <!-- <script scr="bower_components/angular-animate/angular-animate.js"></script>
     <script scr="bower_components/angular-aria/angular-aria.js"></script> -->
-            <script src="js/jquery-2.1.4.js"></script>
-            <script src="js/main.js"></script>
-            <script src="js/app.js"></script>
-            <script src="js/newapp.js"></script>
+        <script src="js/jquery-2.1.4.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/newapp.js"></script>
 
-        </body>
-    </html>
+    </body>
+</html>
