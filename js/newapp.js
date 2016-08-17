@@ -74,7 +74,7 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         $scope.humiditiesplay = arrayplay;
         var timeplay = [];
         for (var i = 0; i < n; i++)
-            timeplay.push(temperatures[i].timestamp);
+            timeplay.push(humidities[i].timestamp);
         // console.log(arrayplay);
         $scope.humiditiestime = timeplay;
         // Time Slicing
@@ -95,6 +95,7 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         $scope.humiditydata = [
             pooped.reverse()
         ];
+        $scope.axised = ["Hum"];
         $scope.seriesed = ["Humidities"]
         $scope.humdatad = $scope.humiditiesplay;
         console.log($scope.humdatad.length);
@@ -188,7 +189,7 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         _reversetimes.reverse();
         // console.log(reversetimes);
         console.log(_reversetimes);
-        $scope.datad = $scope.times.reverse();
+        $scope.humdatad = $scope.times.reverse();
 
 
 
