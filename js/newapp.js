@@ -1,4 +1,4 @@
-var app = angular.module("ngunyumu", ['firebase', 'ngMaterial', 'angularMoment', 'nvd3', 'nvd3ChartDirectives', 'angular.filter', 'chart.js']);
+var app = angular.module("ngunyumu", ['firebase', 'ngMaterial', 'angularMoment', 'angular.filter', 'chart.js', 'md.data.table']);
 app.factory('TemperaturesService', function($firebaseArray, $firebaseObject) {
 
     var ref = new Firebase('https://ngunyumu.firebaseio.com');
