@@ -234,9 +234,12 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         $scope.tempdatad = $scope.temperaturesplay;
         $scope.humdatad = $scope.humiditiesplay;
         console.log($scope.tempdatad.length);
-        console.log($scope.humdatad);
-
-
+        var janad = temperatures.length - 1;
+        var jana_ = temperatures[janad].timestamp;
+        var jana = moment(jana_).add(-1, 'days');
+        $scope.previousday = jana;
+        // var jana = jana_ - 1;
+        console.log(jana);
         var now = moment().get('hour');
         console.log(now);
 

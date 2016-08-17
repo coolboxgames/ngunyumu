@@ -140,13 +140,17 @@
                     <md-card-actions layout="row" layout-align="end center" class="md-padding">
                         <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
                         <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
-                        <span class="md-subhead">Data for
-                            {{}}</span>
+                        <span class="md-subhead">Temperature for
+                            <b>
+                                {{previousday | amDateFormat:'dddd, MMMM Do YYYY'}}
+                            </b>
+                        </span>
 
                     </md-card-actions>
                 </md-card>
+                <canvas id="line" class="chart chart-line" chart-data="temperaturedata" chart-labels="datad" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
+
             </md-content>
-            <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="datad" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
 
         </div>
         <!-- JS Files -->
