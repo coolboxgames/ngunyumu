@@ -17,7 +17,7 @@
 
         <link rel="stylesheet" href="/css/styles.css">
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
-        <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css">
+        <link href="bower_components/angular-material-data-table/dist/md-data-table.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body ng-controller="MainCtrl">
 
@@ -58,138 +58,133 @@
         </section>
 
         <section id="menu-overlay"></section>
+        <div ng-cloak>
+            <md-content>
+                <md-tabs md-dynamic-height md-border-bottom>
+                    <md-tab label="average">
+                        <md-content class="md-padding">
+                            <!-- <h1 class="md-display-2">Average</h1> -->
+                            <md-card md-theme-watch ng-repeat="temperature in temperatures.slice().reverse()|limitTo:1" class="cardy">
 
-    <div ng-cloak>
-  <md-content>
-    <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="average">
-        <md-content class="md-padding">
-          <!-- <h1 class="md-display-2">Average</h1> -->
-          <md-card md-theme-watch ng-repeat="temperature in temperatures.slice().reverse()|limitTo:1" class="cardy">
+                                <md-card-content>
+                                    <span class="md-title">
+                                        <i class="md-subhead">Average Temperature:</i>
+                                        {{averagetemperature | limitTo:4}}
+                                        º
+                                    </span>
+                                    <br/>
 
-            <md-card-content>
-              <span class="md-title">
-                <i class="md-subhead">Average Temperature:</i>
-                {{averagetemperature | limitTo:4}}
-                º
-              </span>
-              <br/>
+                                    <span class="md-title">
+                                        <i class="md-subhead">Average Humidity:</i>
+                                        {{averagehumidity | limitTo:4}}
+                                        %
+                                    </span>
+                                </md-card-content>
+                                <md-card-actions layout="row" layout-align="end center" class="md-padding">
+                                    <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
+                                    <span class="md-subhead">{{temperature.timestamp | amCalendar:referenceTime:formats}}</span>
 
-              <span class="md-title">
-                <i class="md-subhead">Average Humidity:</i>
-                {{averagehumidity | limitTo:4}}
-                %
-              </span>
-            </md-card-content>
-            <md-card-actions layout="row" layout-align="end center" class="md-padding">
-              <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
-              <span class="md-subhead">{{temperature.timestamp | amCalendar:referenceTime:formats}}</span>
+                                </md-card-actions>
+                            </md-card>
 
-            </md-card-actions>
-          </md-card>
+                            <h3>Temperature Graph:
+                            </h3>
+                            <canvas id="line" class="chart chart-line" chart-data="temperaturedata" chart-labels="datad" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
+                            <br/>
+                            <h3>Humidity Graph:
+                            </h3>
+                            <canvas id="line" class="chart chart-line" chart-data="humiditydata" chart-labels="datad" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="maximum">
+                        <md-content class="md-padding">
+                            <!-- <h1 class="md-display-2">Maximum</h1> -->
+                            <md-card md-theme-watch class="cardy">
 
-          <h3>Temperature Graph: </h3>
-          <canvas id="line" class="chart chart-line" chart-data="temperaturedata"
-chart-labels="datad" chart-series="series" chart-options="options"
-chart-dataset-override="datasetOverride" chart-click="onClick"
-</canvas>
-<br/>
-<h3>Humidity Graph: </h3>
-<canvas id="line" class="chart chart-line" chart-data="humiditydata"
-chart-labels="datad" chart-series="series" chart-options="options"
-chart-dataset-override="datasetOverride" chart-click="onClick"
-</canvas>
-        </md-content>
-      </md-tab>
-      <md-tab label="maximum">
-        <md-content class="md-padding">
-          <!-- <h1 class="md-display-2">Maximum</h1> -->
-          <md-card md-theme-watch class="cardy">
+                                <md-card-content>
+                                    <span class="md-title">
+                                        <i class="md-subhead">Temperature:</i>
+                                        {{temperaturesplay | max}}
+                                        º
+                                    </span>
+                                    <br/>
 
-              <md-card-content>
-                  <span class="md-title">
-                      <i class="md-subhead">Temperature:</i>
-                      {{temperaturesplay | max}}
-                      º
-                  </span>
-                  <br/>
+                                    <span class="md-title">
+                                        <i class="md-subhead">Humidity:</i>
+                                        {{humiditiesplay | max}}
+                                        %
+                                    </span>
+                                </md-card-content>
+                                <md-card-actions layout="row" layout-align="end center" class="md-padding">
+                                    <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
+                                    <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
+                                    <span class="md-subhead">For Month
+                                        {{previousmonth}}</span>
 
-                  <span class="md-title">
-                      <i class="md-subhead">Humidity:</i>
-                      {{humiditiesplay | max}}
-                      %
-                  </span>
-              </md-card-content>
-              <md-card-actions layout="row" layout-align="end center" class="md-padding">
-                  <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
-                  <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
-                  <span class="md-subhead">For Month {{previousmonth}}</span>
+                                </md-card-actions>
+                            </md-card>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="minimum">
+                        <md-content class="md-padding">
+                            <!-- <h1 class="md-display-2">Minimum</h1> -->
+                            <md-card md-theme-watch class="cardy">
 
-              </md-card-actions>
-          </md-card>
-        </md-content>
-      </md-tab>
-      <md-tab label="minimum">
-        <md-content class="md-padding">
-          <!-- <h1 class="md-display-2">Minimum</h1> -->
-          <md-card md-theme-watch class="cardy">
+                                <md-card-content>
+                                    <span class="md-title">
+                                        <i class="md-subhead">Temperature:</i>
+                                        {{temperaturesplay | min}}
+                                        º
+                                    </span>
+                                    <br/>
 
-              <md-card-content>
-                  <span class="md-title">
-                      <i class="md-subhead">Temperature:</i>
-                      {{temperaturesplay | min}}
-                      º
-                  </span>
-                  <br/>
+                                    <span class="md-title">
+                                        <i class="md-subhead">Humidity:</i>
+                                        {{humiditiesplay | min}}
+                                        %
+                                    </span>
+                                </md-card-content>
+                                <md-card-actions layout="row" layout-align="end center" class="md-padding">
+                                    <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
+                                    <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
+                                    <span class="md-subhead">For Month
+                                        {{previousmonth}}</span>
 
-                  <span class="md-title">
-                      <i class="md-subhead">Humidity:</i>
-                      {{humiditiesplay | min}}
-                      %
-                  </span>
-              </md-card-content>
-              <md-card-actions layout="row" layout-align="end center" class="md-padding">
-                  <!-- <md-icon md-font-icon="{{ font.name }}" ng-style="{color: !font.theme && font.color, 'font-size': it.size + 'px', height: it.size + 'px'}" ng-class="font.theme" aria-label="{{ font.name + it.size }}" class="step "></md-icon> -->
-                  <md-icon md-svg-icon="images/icons/time.svg"></md-icon>
-                  <span class="md-subhead">For Month {{previousmonth}}</span>
+                                </md-card-actions>
+                            </md-card>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-content>
+        </div>
 
-              </md-card-actions>
-          </md-card>
-        </md-content>
-      </md-tab>
-    </md-tabs>
-  </md-content>
+        <!-- JS Files  -->
+        <!-- <script src="bower_components/angular/angular.js"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 
-            <!-- JS Files  -->
-            <!-- <script src="bower_components/angular/angular.js"></script> -->
-            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-
-            <!-- <script src="bower_components/angularfire/dist/angularfire.js"></script>
+        <!-- <script src="bower_components/angularfire/dist/angularfire.js"></script>
   <script src="bower_components/firebase/firebase.js"></script> -->
-            <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
-            <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
-            <!-- <script scr="bower_components/angular-material/angular-material.js"></script> -->
-            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.7/angular-material.min.js"></script>
-            <script src="bower_components/moment/moment.js"></script>
-            <script src="bower_components/angular-moment/angular-moment.js"></script>
-            <!-- <script src="bower_components/d3/d3.js"></script>
+        <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+        <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+        <!-- <script scr="bower_components/angular-material/angular-material.js"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.7/angular-material.min.js"></script>
+        <script src="bower_components/moment/moment.js"></script>
+        <script src="bower_components/angular-moment/angular-moment.js"></script>
+        <!-- <script src="bower_components/d3/d3.js"></script>
     <script src="bower_components/nvd3/build/nv.d3.js"></script> -->
-            <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
-            <script src="bower_components/Chart.js/Chart.js"></script>
-            <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
-            <script data-require="d3@3.4.6" data-semver="3.4.6" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
-            <script data-require="nvd3@1.1.14-beta" data-semver="1.1.14-beta" src="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.14-beta/nv.d3.js"></script>
-            <script data-require="d3@3.4.6" data-semver="3.4.6" src="//cdn.jsdelivr.net/angularjs.nvd3-directives/v0.0.7/angularjs-nvd3-directives.js"></script>
-            <!-- or use another assembly -->
-            <script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
-            <!-- <script scr="bower_components/angular-animate/angular-animate.js"></script>
-    <script scr="bower_components/angular-aria/angular-aria.js"></script> -->
-            <script src="js/jquery-2.1.4.js"></script>
-            <script src="js/main.js"></script>
-            <script src="js/app.js"></script>
-            <script src="js/newapp.js"></script>
+        <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
+        <script src="bower_components/Chart.js/Chart.js"></script>
+        <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
 
-        </body>
-    </html>
+        <!-- <script scr="bower_components/angular-animate/angular-animate.js"></script>
+    <script scr="bower_components/angular-aria/angular-aria.js"></script> -->
+        <script src="js/jquery-2.1.4.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/newapp.js"></script>
+
+    </body>
+</html>
