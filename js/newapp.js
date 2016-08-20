@@ -62,6 +62,7 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         var averagehumidity = humiditiestotal / humidities.length;
         console.log(averagehumidity);
         $scope.averagehumidity = averagehumidity;
+
     });
 
     $scope.humidities.$loaded().then(function(humidities) {
@@ -81,6 +82,28 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         var timepoop = timeplay.slice(1).slice(-24);
         var inverttimepoop = timepoop.reverse();
         console.log(inverttimepoop);
+
+
+        // push array top grid object
+        // Create new array-objet
+        // for (var i = 0; i < n; i++)
+        //     humiditiesgrid.push(humidities[i].average);
+        // humiditiesgrid.push(humidities[i].average);
+
+
+        var humiditiesgrid = [];
+        var len = humidities.length;
+        for (var i = 0; i < len; i++) {
+            humiditiesgrid.push({
+                date: humidities[i].day,
+                amount: humidities[i].average,
+                month: humidities[i].month,
+                hour: humidities[i].hour,
+                sortable: true,
+                resizeable: true
+            });
+        }
+console.log(humiditiesgrid);
 
         // Do some slicing here
         // var poop = arrayplay.slice(Math.max(arrayplay.length - 5, 1))
