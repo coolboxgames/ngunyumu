@@ -28,6 +28,7 @@
     "angular-moment": "~0.10.3",
     "angular-chart.js": "~0.10.2",
     "angular-filter": "^0.5.9",
-    "angular-material-data-table": "^0.10.9"
+    "angular-material-data-table": "^0.10.9",
+    "angular-ui-grid": "^3.2.1"
   }
 }

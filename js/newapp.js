@@ -1,4 +1,4 @@
-var app = angular.module("ngunyumu", ['firebase', 'ngMaterial', 'angularMoment', 'angular.filter', 'chart.js', 'md.data.table']);
+var app = angular.module("ngunyumu", ['firebase', 'ngMaterial', 'angularMoment', 'angular.filter', 'chart.js', 'ui.grid']);
 app.factory('TemperaturesService', function($firebaseArray, $firebaseObject) {
 
     var ref = new Firebase('https://ngunyumu.firebaseio.com');
@@ -62,6 +62,7 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         var averagehumidity = humiditiestotal / humidities.length;
         console.log(averagehumidity);
         $scope.averagehumidity = averagehumidity;
+
     });
 
     $scope.humidities.$loaded().then(function(humidities) {
@@ -74,13 +75,35 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         $scope.humiditiesplay = arrayplay;
         var timeplay = [];
         for (var i = 0; i < n; i++)
-            timeplay.push(temperatures[i].timestamp);
+            timeplay.push(humidities[i].timestamp);
         // console.log(arrayplay);
         $scope.humiditiestime = timeplay;
         // Time Slicing
         var timepoop = timeplay.slice(1).slice(-24);
         var inverttimepoop = timepoop.reverse();
         console.log(inverttimepoop);
+
+
+        // push array top grid object
+        // Create new array-objet
+        // for (var i = 0; i < n; i++)
+        //     humiditiesgrid.push(humidities[i].average);
+        // humiditiesgrid.push(humidities[i].average);
+
+
+        var humiditiesgrid = [];
+        var len = humidities.length;
+        for (var i = 0; i < len; i++) {
+            humiditiesgrid.push({
+                date: humidities[i].day,
+                month: humidities[i].month,
+                hour: humidities[i].hour,
+                amount: humidities[i].average
+            });
+        }
+        // console.log(humiditiesgrid);
+        $scope.humiditiesgrided = humiditiesgrid;
+        console.log($scope.humiditiesgrid);
 
         // Do some slicing here
         // var poop = arrayplay.slice(Math.max(arrayplay.length - 5, 1))
@@ -95,6 +118,7 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         $scope.humiditydata = [
             pooped.reverse()
         ];
+        $scope.axised = ["Hum"];
         $scope.seriesed = ["Humidities"]
         $scope.humdatad = $scope.humiditiesplay;
         console.log($scope.humdatad.length);
@@ -188,7 +212,7 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         _reversetimes.reverse();
         // console.log(reversetimes);
         console.log(_reversetimes);
-        $scope.datad = $scope.times.reverse();
+        $scope.humdatad = $scope.times.reverse();
 
 
 
@@ -234,9 +258,12 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         $scope.tempdatad = $scope.temperaturesplay;
         $scope.humdatad = $scope.humiditiesplay;
         console.log($scope.tempdatad.length);
-        console.log($scope.humdatad);
-
-
+        var janad = temperatures.length - 1;
+        var jana_ = temperatures[janad].timestamp;
+        var jana = moment(jana_).add(-1, 'days');
+        $scope.previousday = jana;
+        // var jana = jana_ - 1;
+        console.log(jana);
         var now = moment().get('hour');
         console.log(now);
 
@@ -326,6 +353,15 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         // console.log(reversetimes);
         console.log(_reversetimes);
         $scope.datad = $scope.times.reverse();
+
+        //table data and config
+        $scope.selected = [];
+
+        $scope.query = {
+            order: 'name',
+            limit: 5,
+            page: 1
+        };
     });
 
     // $scope.previousmonth = moment().subtract(1, 'months');
@@ -333,5 +369,7 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
     $scope.previousmonth = ans - 1;
 
     console.log(ans);
+
+
 
 });
