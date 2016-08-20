@@ -98,12 +98,12 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
                 date: humidities[i].day,
                 amount: humidities[i].average,
                 month: humidities[i].month,
-                hour: humidities[i].hour,
-                sortable: true,
-                resizeable: true
+                hour: humidities[i].hour
             });
         }
-console.log(humiditiesgrid);
+        // console.log(humiditiesgrid);
+        $scope.humiditiesgrided = humiditiesgrid;
+        console.log($scope.humiditiesgrid);
 
         // Do some slicing here
         // var poop = arrayplay.slice(Math.max(arrayplay.length - 5, 1))
