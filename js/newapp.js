@@ -96,9 +96,9 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         for (var i = 0; i < len; i++) {
             humiditiesgrid.push({
                 date: humidities[i].day,
-                amount: humidities[i].average,
                 month: humidities[i].month,
-                hour: humidities[i].hour
+                hour: humidities[i].hour,
+                amount: humidities[i].average
             });
         }
         // console.log(humiditiesgrid);
