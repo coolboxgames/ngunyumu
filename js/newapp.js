@@ -1,7 +1,7 @@
 var app = angular.module("ngunyumu", ['firebase', 'ngMaterial', 'angularMoment', 'angular.filter', 'chart.js', 'ui.grid']);
 app.factory('TemperaturesService', function($firebaseArray, $firebaseObject) {
 
-    var ref = new Firebase('https://ngunyumu.firebaseio.com');
+    var ref = new Firebase('https://thengunyumu.firebaseio.com');
 
     return {
         getTemperatures: function() {
@@ -14,7 +14,7 @@ app.factory('TemperaturesService', function($firebaseArray, $firebaseObject) {
 })
 app.factory('HumiditiesService', function($firebaseArray, $firebaseObject) {
 
-    var ref = new Firebase('https://ngunyumu.firebaseio.com');
+    var ref = new Firebase('https://thengunyumu.firebaseio.com');
 
     return {
         getHumidities: function() {
