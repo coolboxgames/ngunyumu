@@ -1,7 +1,7 @@
 var app = angular.module("ngunyumu", ['firebase', 'ngMaterial', 'angularMoment', 'angular.filter', 'chart.js', 'ui.grid']);
 app.factory('TemperaturesService', function($firebaseArray, $firebaseObject) {
 
-    var ref = new Firebase('https://thengunyumu.firebaseio.com');
+    var ref = new Firebase('https://ngunyumu.firebaseio.com');
 
     return {
         getTemperatures: function() {
@@ -14,7 +14,7 @@ app.factory('TemperaturesService', function($firebaseArray, $firebaseObject) {
 })
 app.factory('HumiditiesService', function($firebaseArray, $firebaseObject) {
 
-    var ref = new Firebase('https://thengunyumu.firebaseio.com');
+    var ref = new Firebase('https://ngunyumu.firebaseio.com');
 
     return {
         getHumidities: function() {
@@ -39,12 +39,12 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
                 // console.log(temperaturestotal);
         }
         var averagetemperature = temperaturestotal / temperatures.length;
-        console.log(averagetemperature);
+        // console.log(averagetemperature);
         $scope.averagetemperature = averagetemperature;
     });
     // GET humidities
     $scope.humidities = HumiditiesService.getHumidities();
-    console.log($scope.humidities);
+    // console.log($scope.humidities);
     $scope.today = {
         time: new Date()
     };
@@ -231,6 +231,15 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         // var nowed = temperatures[2].timestamp.moment().get('year');;
         // console.log(nowed);
         // Create Array For Time
+        // new array to hold hourly time from 2 seconds
+        var hourtemp = temperatures.slice(1).slice(-1800);
+        var houravg = 0;
+        var hourtotal = 0;
+        for (var i = 0; i < 1800; i++) {
+          hourtotal += hourtemp[i];
+        }
+        var houravg = hourtotal / hourtemp.length;
+console.log(hourtotal);
         var timeplay = [];
         for (var i = 0; i < n; i++)
             timeplay.push(temperatures[i].timestamp);
