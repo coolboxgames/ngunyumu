@@ -236,10 +236,12 @@ app.controller("MainCtrl", function($scope, TemperaturesService, HumiditiesServi
         var houravg = 0;
         var hourtotal = 0;
         for (var i = 0; i < 1800; i++) {
-          hourtotal += hourtemp[i];
+            hourtotal += hourtemp[i];
         }
         var houravg = hourtotal / hourtemp.length;
-console.log(hourtotal);
+        console.log(hourtotal);
+        $scope.hourtemp = hourtemp;
+        $scope.houravg = houravg;
         var timeplay = [];
         for (var i = 0; i < n; i++)
             timeplay.push(temperatures[i].timestamp);
